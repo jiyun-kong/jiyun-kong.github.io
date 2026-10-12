@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The personal academic website of Jiyun Kong. Research in event-based vision, neural video compression, and computational imaging.">
+  <meta name="theme-color" content="#fbfcfd">
+  <title>Jiyun Kong | Research</title>
+  <style>
+    :root {
+      --bg: #fbfcfd;
+      --surface: #ffffff;
+      --ink: #24313c;
+      --ink-strong: #172735;
+      --muted: #667787;
+      --line: #e5ebee;
+      --accent: #08779f;
+      --accent-dark: #075e82;
+      --light-accent: #eef7fa;
+      --sidebar: #f5f8f9;
+      --shadow: 0 8px 35px rgba(32, 54, 70, .035);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+    body { margin: 0; color: var(--ink); background: var(--bg); font: 15px/1.78 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #95cce0; outline-offset: 4px; }
+    button { font: inherit; }
+    .layout { max-width: 1330px; min-height: 100vh; margin: auto; display: grid; grid-template-columns: 292px minmax(0, 1fr); }
+    .sidebar { background: var(--sidebar); border-right: 1px solid var(--line); }
+    .sidebar-inner { position: sticky; top: 0; min-height: 100vh; padding: 76px 29px 38px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .portrait { width: 167px; height: 167px; display: grid; place-items: center; border-radius: 50%; overflow: hidden; background: linear-gradient(140deg, #dbeaf0, #eef4f6 50%, #cfdfe5); border: 7px solid white; box-shadow: 0 5px 22px rgba(22, 57, 69, .1); }
+    .portrait svg { width: 88px; color: #89a4af; }
+    /* PHOTO: Add assets/profile.jpg to your repository, then replace the SVG above with <img src="assets/profile.jpg" alt="Portrait of Jiyun Kong">. */
+    .side-name { font-size: 24px; font-weight: 740; letter-spacing: -.7px; color: var(--ink-strong); margin: 23px 0 3px; }
+    .side-role { font-size: 13px; color: var(--muted); margin: 2px 0 0; line-height: 1.7; }
+    .side-divider { width: 52px; height: 2px; background: #c8dce5; margin: 24px auto; }
+    .side-interests { font-size: 12.5px; color: #607787; line-height: 1.85; margin: 0; }
+    .social { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 25px; }
+    .social a { width: 39px; height: 39px; display: grid; place-items: center; border: 1px solid #d9e4e8; border-radius: 50%; background: white; color: #435c6b; }
+    .social a:hover { color: var(--accent); border-color: #a3c7d5; background: #f4fbfd; text-decoration: none; }
+    .social svg { width: 18px; height: 18px; }
+    .sidebar-bottom { color: #91a0ab; font-size: 11px; margin-top: auto; padding-top: 60px; }
+    .main { min-width: 0; padding: 0 66px 40px; background: #fff; }
+    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); margin: 0 -66px; padding: 0 66px; }
+    .nav { height: 82px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { font-weight: 760; letter-spacing: -.35px; font-size: 18px; color: var(--ink-strong); white-space: nowrap; }
+    .brand:hover { text-decoration: none; }
+    .nav-links { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 20px; }
+    .nav-links a { font-size: 12.4px; font-weight: 600; color: #687887; white-space: nowrap; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); text-decoration: none; }
+    .nav-links a.active { position: relative; }
+    .nav-links a.active::after { content: ""; position: absolute; bottom: -31px; left: 0; right: 0; height: 2px; background: var(--accent); }
+    .menu-button { display: none; border: 1px solid var(--line); background: white; border-radius: 8px; padding: 7px 11px; color: var(--ink); cursor: pointer; }
+    .content { max-width: 830px; margin: 0 auto; }
+    section { padding-top: 65px; }
+    #about { padding-top: 70px; }
+    .eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 2px; font-size: 11px; text-transform: uppercase; }
+    h1 { color: var(--ink-strong); font-size: clamp(37px, 4.5vw, 53px); line-height: 1.18; letter-spacing: -1.9px; margin: 9px 0 12px; font-weight: 770; }
+    .headline { color: #667b89; font-size: 16px; margin: 0 0 23px; font-weight: 480; }
+    p { margin: 0 0 14px; }
+    .intro { font-size: 14.5px; line-height: 1.95; color: #4c5e6c; max-width: 790px; }
+    .research-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .tag { font-size: 11.4px; color: #2f6e86; background: #eff7fa; border: 1px solid #e0eef4; border-radius: 4px; padding: 3px 11px; line-height: 1.8; font-weight: 550; }
+    h2 { display: flex; align-items: center; gap: 15px; font-size: 23px; line-height: 1.35; letter-spacing: -.65px; color: #223442; margin: 0 0 28px; font-weight: 740; }
+    h2::after { content: ""; background: var(--line); height: 1px; flex: 1; }
+    .news-list { margin: 0; padding: 0; list-style: none; }
+    .news-item { display: grid; grid-template-columns: 100px 1fr; gap: 21px; padding: 10px 0; font-size: 13.7px; line-height: 1.75; }
+    .news-date { font-size: 12px; color: #84949f; font-weight: 650; letter-spacing: .15px; padding-top: 2px; }
+    .news-item p { margin: 0; color: #485d6c; }
+    .news-item strong { color: #344957; font-weight: 700; }
+    .simple-link { margin-top: 12px; padding: 0; color: var(--accent); border: none; background: transparent; cursor: pointer; font-size: 12.5px; font-weight: 650; }
+    .more-news[hidden] { display: none; }
+    .publication { display: grid; grid-template-columns: 186px minmax(0,1fr); gap: 22px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .publication:first-child { padding-top: 1px; }
+    .pub-art { border-radius: 7px; height: 118px; position: relative; overflow: hidden; border: 1px solid #dde7eb; isolation: isolate; }
+    .pub-art::after { content: ""; position: absolute; inset: 0; opacity: .6; background: repeating-linear-gradient(0deg,transparent 0,transparent 17px,rgba(255,255,255,.29) 18px,transparent 19px); }
+    .pub-art.envc { background: linear-gradient(130deg,#c9e4e9,#e6eff5 50%,#acd8df); }
+    .pub-art.evf { background: linear-gradient(125deg,#d1dfeb,#e2e9f6 55%,#b9d7e2); }
+    .art-chip { position: absolute; left: 14px; top: 12px; font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #39788d; z-index: 2; }
+    .art-visual { position: absolute; display: flex; gap: 6px; align-items: center; left: 18px; right: 18px; bottom: 22px; height: 43px; z-index: 2; }
+    .art-visual i { display: block; height: 100%; flex: 1; border-radius: 4px; background: rgba(32,113,145,.23); border: 1px solid rgba(32,113,145,.2); }
+    .art-visual i:nth-child(2) { transform: translateY(-9px); background: rgba(28,112,151,.38); }
+    .art-visual i:nth-child(3) { transform: translateY(3px); background: rgba(53,127,153,.27); }
+    .art-visual i:nth-child(4) { transform: translateY(-5px); background: rgba(17,91,136,.47); }
+    .pub-title { color: #263d4e; font-size: 15px; line-height: 1.5; font-weight: 730; margin: 0 0 6px; }
+    .pub-authors { font-size: 12.7px; color: #6d7c87; line-height: 1.65; margin: 0 0 5px; }
+    .pub-authors strong { color: #2b5568; }
+    .venue { font-size: 12.5px; color: #627687; font-style: italic; margin: 0 0 10px; }
+    .pub-desc { color: #5b6d7a; font-size: 12.5px; line-height: 1.73; margin: 0 0 8px; }
+    .pub-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pub-links a, .outline-link { display: inline-flex; align-items: center; gap: 5px; border: 1px solid #d9e7ed; border-radius: 5px; padding: 3px 11px; font-size: 11.5px; font-weight: 700; background: #fbfdfe; }
+    .pub-links a:hover, .outline-link:hover { text-decoration: none; background: var(--light-accent); }
+    .section-note { color: #8997a1; font-size: 11.7px; margin-top: 14px; }
+    .entry { display: grid; grid-template-columns: 126px minmax(0,1fr); gap: 18px; padding: 5px 0 22px; }
+    .entry-date { color: #8b9aa4; font-size: 12px; font-weight: 650; margin-top: 2px; }
+    .entry h3 { color: #293e4e; font-size: 14.6px; margin: 0 0 5px; line-height: 1.5; }
+    .entry p { font-size: 13px; color: #687a88; line-height: 1.8; margin: 0; }
+    .project { border: 1px solid var(--line); background: #fcfefe; padding: 22px 25px; border-radius: 8px; box-shadow: var(--shadow); }
+    .project-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+    .project h3 { margin: 0 0 8px; font-size: 15px; line-height: 1.4; color: #2b4150; }
+    .project p { margin: 0 0 13px; font-size: 13px; color: #667988; }
+    .tiny-note { color: #95a2aa; font-size: 11px; line-height: 1.7; }
+    .footer { margin-top: 77px; border-top: 1px solid var(--line); padding: 23px 0 0; display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; color: #98a6b0; font-size: 11.5px; }
+    .footer a { color: #7a96a6; }
+    @media (max-width: 1090px) { .layout { grid-template-columns: 248px minmax(0,1fr); } .main { padding: 0 40px 35px; } .topbar { margin: 0 -40px; padding: 0 40px; } .nav-links { gap: 12px; } .nav-links a { font-size: 11.9px; } .sidebar-inner { padding: 70px 20px 30px; } }
+    @media (max-width: 800px) {
+      .layout { display: block; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--line); }
+      .sidebar-inner { position: static; min-height: auto; padding: 37px 20px 27px; }
+      .portrait { width: 122px; height: 122px; } .portrait svg { width: 70px; }
+      .side-name { margin-top: 12px; font-size: 21px; }
+      .side-divider, .side-interests, .sidebar-bottom { display: none; }
+      .social { margin-top: 15px; }
+      .main { padding: 0 25px 35px; }
+      .topbar { margin: 0 -25px; padding: 0 25px; }
+      .nav { height: 65px; }
+      .menu-button { display: block; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; padding: 17px 25px 19px; box-shadow: 0 10px 16px rgba(30,50,64,.09); border-bottom: 1px solid var(--line); background: #fff; flex-direction: column; align-items: flex-start; gap: 13px; }
+      .nav-links.open { display: flex; }
+      .nav-links a.active::after { display: none; }
+      #about { padding-top: 43px; }
+      section { padding-top: 55px; }
+    }
+    @media (max-width: 550px) { .publication { grid-template-columns: 1fr; gap: 13px; } .pub-art { width: 100%; height: 115px; } .entry { grid-template-columns: 1fr; gap: 2px; } .news-item { grid-template-columns: 80px 1fr; gap: 12px; } .main { padding-left: 20px; padding-right: 20px; } .topbar { margin: 0 -20px; padding: 0 20px; } h1 { font-size: 40px; } .footer { margin-top: 57px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Profile">
+      <div class="sidebar-inner">
+        <div class="portrait" aria-label="Profile photo placeholder">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><circle cx="50" cy="34" r="17" fill="currentColor" opacity=".18"/><path d="M17 88c2-23 15-34 33-34s31 11 33 34" fill="currentColor" opacity=".18"/><circle cx="50" cy="34" r="17"/><path d="M17 88c2-23 15-34 33-34s31 11 33 34"/></svg>
+        </div>
+        <div class="side-name">Jiyun Kong</div>
+        <p class="side-role">Computer Vision Researcher<br>Event-based Vision &amp; Video Compression</p>
+        <div class="side-divider"></div>
+        <p class="side-interests">Event-based Vision<br>Neural Video Compression<br>Computational Imaging</p>
+        <div class="social">
+          <a href="https://github.com/jiyun-kong" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7A11.3 11.3 0 0 0 8.43 22.72c.56.1.77-.25.77-.55v-2.16c-3.13.68-3.79-1.34-3.79-1.34-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.68.08-.68 1.13.08 1.73 1.17 1.73 1.17 1 .1 1.72-.3 2.14-.62.1-.72.39-1.2.7-1.47-2.5-.28-5.13-1.25-5.13-5.58 0-1.23.44-2.24 1.17-3.03-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.1 1.16A10.8 10.8 0 0 1 12 4.85c.96 0 1.93.13 2.83.38 2.15-1.46 3.1-1.16 3.1-1.16.62 1.56.23 2.71.11 3a4.36 4.36 0 0 1 1.17 3.03c0 4.34-2.63 5.3-5.14 5.57.4.35.75 1.03.75 2.08v3.42c0 .3.2.66.78.54A11.3 11.3 0 0 0 12 .7Z"/></svg>
+          </a>
+          <a href="https://arxiv.org/search/?query=Jiyun+Kong&searchtype=author" target="_blank" rel="noopener noreferrer" aria-label="Publications on arXiv" title="arXiv">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="3"/><path d="M7 16l5-8 5 8M8.2 14h7.6"/></svg>
+          </a>
+        </div>
+        <p class="sidebar-bottom">Personal academic homepage</p>
+      </div>
+    </aside>
+
+    <main class="main" id="top">
+      <header class="topbar">
+        <nav class="nav" aria-label="Main navigation">
+          <a class="brand" href="#top">Jiyun Kong<span style="color:#0f87ad">.</span></a>
+          <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">Menu &#9776;</button>
+          <div class="nav-links" id="navLinks">
+            <a href="#about" class="active">About</a>
+            <a href="#news">News</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#awards">Awards</a>
+          </div>
+        </nav>
+      </header>
+
+      <div class="content">
+        <section id="about">
+          <div class="eyebrow">Hello, I am</div>
+          <h1>Jiyun Kong<span style="color:#0e87ab">.</span></h1>
+          <p class="headline">Researcher in Computer Vision &amp; Multimedia</p>
+          <p class="intro">My research focuses on how visual systems can better understand and reconstruct dynamic scenes. I am particularly interested in <strong>event-based vision</strong>, <strong>neural video compression</strong>, and the use of event cameras as complementary sources of temporal information.</p>
+          <p class="intro">My recent work explores event-guided learned video coding and event-based scene synthesis, including approaches to motion modeling and inter-frame residual alignment. I have also participated in research collaboration at EPFL in Switzerland.</p>
+          <div class="research-tags">
+            <span class="tag">Event-based Vision</span><span class="tag">Learned Video Compression</span><span class="tag">Video Synthesis</span><span class="tag">Computer Vision</span>
+          </div>
+        </section>
+
+        <section id="news">
+          <h2>News</h2>
+          <ul class="news-list">
+            <li class="news-item"><span class="news-date">2026.10</span><p>Our new preprint <a href="https://arxiv.org/abs/2610.02265" target="_blank" rel="noopener noreferrer"><strong>Event-guided Neural Video Compression (ENVC)</strong></a> is available on arXiv.</p></li>
+            <li class="news-item"><span class="news-date">2026</span><p><a href="https://arxiv.org/abs/2512.17323" target="_blank" rel="noopener noreferrer"><strong>EvFRA</strong></a> was accepted to <strong>ACCV 2026</strong>.</p></li>
+            <li class="news-item"><span class="news-date">2025.12</span><p>The first preprint of our event-based scene synthesis work was released on arXiv.</p></li>
+          </ul>
+        </section>
+
+        <section id="publications">
+          <h2>Publications</h2>
+          <div class="publication">
+            <div class="pub-art envc" aria-hidden="true"><span class="art-chip">ENVC · 2026</span><div class="art-visual"><i></i><i></i><i></i><i></i></div></div>
+            <div>
+              <h3 class="pub-title">Event-guided Neural Video Compression</h3>
+              <p class="pub-authors"><strong>Jiyun Kong</strong>, Jungwoo Kim, Enes Eray Demirtas, Touradj Ebrahimi, Jong-Seok Lee</p>
+              <p class="venue">arXiv preprint, 2026</p>
+              <p class="pub-desc">An event-guided neural video codec that uses event-derived cues for motion prediction and temporal context refinement.</p>
+              <div class="pub-links"><a href="https://arxiv.org/abs/2610.02265" target="_blank" rel="noopener noreferrer">Paper ↗</a><a href="https://github.com/kjungwoo03/ENVC" target="_blank" rel="noopener noreferrer">Code ↗</a></div>
+            </div>
+          </div>
+          <div class="publication">
+            <div class="pub-art evf" aria-hidden="true"><span class="art-chip">EvFRA · 2026</span><div class="art-visual"><i></i><i></i><i></i><i></i></div></div>
+            <div>
+              <h3 class="pub-title">Event-based Scene Synthesis via Inter-Frame Residual Alignment</h3>
+              <p class="pub-authors"><strong>Jiyun Kong</strong>, Jun-Hyuk Kim, Jong-Seok Lee</p>
+              <p class="venue">ACCV 2026</p>
+              <p class="pub-desc">Event-based frame synthesis by learning inter-frame residual representations, avoiding explicit optical-flow warping.</p>
+              <div class="pub-links"><a href="https://arxiv.org/abs/2512.17323" target="_blank" rel="noopener noreferrer">Paper ↗</a><a href="https://github.com/jiyun-kong/EvFRA" target="_blank" rel="noopener noreferrer">Code ↗</a></div>
+            </div>
+          </div>
+          <p class="section-note">Publication details link to their original arXiv records. Images are illustrative placeholders.</p>
+        </section>
+
+        <section id="experience">
+          <h2>Research Experience</h2>
+          <div class="entry">
+            <span class="entry-date">Visiting research</span>
+            <div><h3>École polytechnique fédérale de Lausanne (EPFL)</h3><p>Research collaboration in Switzerland related to multimedia and computer vision.</p></div>
+          </div>
+          <p class="tiny-note">Add your exact degree program, institutions, and research dates once confirmed.</p>
+        </section>
+
+        <section id="projects">
+          <h2>Selected Projects</h2>
+          <div class="project">
+            <div class="project-top"><h3>Eco-friendly Driving Assessment with OBD Sensor Data</h3><span class="tag">AIoT</span></div>
+            <p>Developed a driving assessment app using real-world vehicle OBD sensor data. Preprocessed speed, engine RPM, and accelerator information, trained a lightweight MobileNet-based driving-grade classifier, and built a cloud server for model deployment.</p>
+            <div class="tiny-note">Advantech AIoT InnoWorks project</div>
+          </div>
+        </section>
+
+        <section id="awards">
+          <h2>Honors &amp; Awards</h2>
+          <div class="entry">
+            <span class="entry-date">Award</span>
+            <div><h3>Excellence Award (우수상)</h3><p>Advantech AIoT InnoWorks — eco-friendly driving assessment application.</p></div>
+          </div>
+          <p class="tiny-note">Please check the official English name of the award before final publication.</p>
+        </section>
+
+        <footer class="footer">
+          <span>© <span id="year">2026</span> Jiyun Kong. Built with HTML &amp; CSS.</span>
+          <span>Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a> · <a href="#top">Back to top ↑</a></span>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+    menuButton.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      const links = Array.from(document.querySelectorAll('.nav-links a'));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+          }
+        });
+      }, {rootMargin: '-18% 0px -70% 0px'});
+      document.querySelectorAll('main section[id]').forEach(section => observer.observe(section));
+    }
+  </script>
+</body>
+</html>
